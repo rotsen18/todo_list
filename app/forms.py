@@ -1,11 +1,11 @@
 from django import forms
 
-from app.models import Task
+from app.models import Task, Tag
 
 
 class TaskCreateForm(forms.ModelForm):
     tags = forms.ModelMultipleChoiceField(
-        queryset=Task.objects.all(),
+        queryset=Tag.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
@@ -14,6 +14,7 @@ class TaskCreateForm(forms.ModelForm):
             attrs={'type': 'datetime-local'}
         )
     )
+    content = forms.CharField(max_length=255)
 
     class Meta:
         model = Task

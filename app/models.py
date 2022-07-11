@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Task(models.Model):
-    content = models.TextField()
+    content = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(null=True, blank=True)
     completed = models.BooleanField(default=False)

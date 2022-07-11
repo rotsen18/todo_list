@@ -22,3 +22,5 @@ python manage.py runserver  # start Django project
 * You can add tags to your task
 
 ## Demo
+![img.png](img.png)
+![img_1.png](img_1.png)
