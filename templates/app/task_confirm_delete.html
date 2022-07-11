@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>Delete confirmation</h1>
+  <p>You are trying to delete task: <strong>{{ task|truncatechars:20 }}</strong></p>
+  <p>Task was created <strong>{{ task.created }}</strong> and <strong>{{ task.completed|yesno:"completed, not completed" }}</strong></p>
+  <h3>Are you sure?</h3>
+  <p>This process cannot be reversed</p>
+<div>
+  {% include "includes/confirmation_form.html" %}
+
+  <button onclick="window.location.href='{% url 'app:index' %}';" type="button"
+              class="btn btn-success">
+        No, back to the task list
+      </button>
+<button onclick="window.location.href='{% url 'app:task-detail' pk=task.id %}';" type="button"
+              class="btn btn-success">
+        No, show task detail
+      </button>
+</div>
+{% endblock %}

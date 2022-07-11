@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}TODO - Home{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>TODO list
+    <button style="float: end" onclick="window.location.href='{% url 'app:task-create' %}';" type="button"
+            class="btn btn-success">
+      Add task
+    </button>
+  </h1>
+  <br>
+  {% for task in task_list %}
+    <p><strong>{{ task|truncatechars:20 }}
+      {% if task.completed %}
+        <span class="text-success">Done</span>
+        <button style="float: right" onclick="window.location.href='{% url 'app:task-change' pk=task.id %}';" type="button"
+            class="btn btn-secondary">
+      Undo
+    </button>
+      {% else %}
+        <span class="text-danger">Not done</span>
+        <button style="float: right" onclick="window.location.href='{% url 'app:task-change' pk=task.id %}';" type="button"
+            class="btn btn-success">
+      Complete
+    </button>
+      {% endif %}
+    </strong>
+
+    </p>
+    <p>Created: {{ task.created }}
+      {% if task.deadline %}
+        <span class="text-danger">Deadline: {{ task.deadline }}</span>
+      {% endif %}
+    </p>
+    <p class="text-muted">
+      <strong>Tags: {{ task.tags.all|join:" " }}</strong>
+    </p>
+    <p>
+      <a class="text-primary" href="{% url 'app:task-detail' pk=task.id %}">detail</a>
+      <a class="text-warning" href="{% url 'app:task-update' pk=task.id %}">Update</a>
+      <a class="text-danger" href="{% url 'app:task-delete' pk=task.id %}">Delete</a>
+    </p>
+    <hr>
+    {% empty %}
+    <p>There are no task yet</p>
+  {% endfor %}
+</div>
+{% endblock %}

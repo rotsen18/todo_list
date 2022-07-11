@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task detail</h1>
+  <br>
+  <p><strong class="text-muted">Id: </strong>{{ task.id }}</p>
+  <p><strong class="text-muted">Created: </strong>{{ task.created }}</p>
+  <p><strong class="text-muted">Deadline: </strong>{{ task.deadline }}</p>
+  <p><strong class="text-muted">Completed: </strong>{{ task.completed|yesno:"Yes, No" }}</p>
+
+  <hr>
+  <h4><strong>Content:</strong></h4>
+  <p>{{ task.content }}</p>
+{% endblock %}
