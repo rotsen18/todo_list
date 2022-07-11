@@ -11,6 +11,7 @@ class TaskListView(generic.ListView):
     template_name = "app/index.html"
     queryset = Task.objects.prefetch_related("tags")
     context_object_name = "task_list"
+    paginate_by = 2
 
 
 class TaskDetailView(generic.DetailView):
@@ -62,5 +63,6 @@ class TagUpdateView(generic.UpdateView):
 
 class TagListView(generic.ListView):
     model = Tag
+    paginate_by = 10
 
 
