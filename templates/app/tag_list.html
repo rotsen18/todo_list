@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Tags
+    <button style="float: end" onclick="window.location.href='{% url 'app:tag-create' %}';" type="button"
+            class="btn btn-success">
+      Add tag
+    </button>
+  </h1>
+  <br>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for tag in tag_list %}
+      <tr class="table-default">
+      <td>{{ tag.name }}</td>
+      <td>
+        <button style="float: none" onclick="window.location.href='{% url 'app:tag-update' pk=tag.id %}';" type="button"
+                class="btn btn-warning">
+          Update
+        </button>
+      </td>
+      <td>
+        <button style="float: none" onclick="window.location.href='{% url 'app:tag-delete' pk=tag.id %}';" type="button"
+                class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    {% empty %}
+      <p>There are no tags yet</p>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
