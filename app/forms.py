@@ -9,6 +9,11 @@ class TaskCreateForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+    deadline = forms.DateTimeField(
+        widget=forms.TextInput(
+            attrs={'type': 'datetime-local'}
+        )
+    )
 
     class Meta:
         model = Task
