@@ -10,9 +10,8 @@ class TaskCreateForm(forms.ModelForm):
         required=False
     )
     deadline = forms.DateTimeField(
-        widget=forms.TextInput(
-            attrs={'type': 'datetime-local'}
-        )
+        widget=forms.TextInput(attrs={'type': 'datetime-local'}),
+        required=False
     )
     content = forms.CharField(max_length=255)
 

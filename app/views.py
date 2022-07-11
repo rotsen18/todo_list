@@ -26,7 +26,7 @@ class TaskCreateView(generic.CreateView):
 class TaskUpdateView(generic.UpdateView):
     model = Task
     form_class = TaskCreateForm
-    success_url = reverse_lazy("app:home")
+    success_url = reverse_lazy("app:index")
 
 
 class TaskDeleteView(generic.DeleteView):
