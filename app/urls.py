@@ -18,7 +18,7 @@ urlpatterns = [
     path(
         "",
         TaskListView.as_view(),
-        name="index"
+        name="task-list"
     ),
     path(
         "tasks/create/",

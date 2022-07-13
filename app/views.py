@@ -8,7 +8,6 @@ from app.models import Task, Tag
 
 class TaskListView(generic.ListView):
     model = Task
-    template_name = "app/index.html"
     queryset = Task.objects.prefetch_related("tags")
     context_object_name = "task_list"
     paginate_by = 2
@@ -21,18 +20,18 @@ class TaskDetailView(generic.DetailView):
 class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskCreateForm
-    success_url = reverse_lazy("app:home")
+    success_url = reverse_lazy("app:task-list")
 
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
     form_class = TaskCreateForm
-    success_url = reverse_lazy("app:index")
+    success_url = reverse_lazy("app:task-list")
 
 
 class TaskDeleteView(generic.DeleteView):
     model = Task
-    success_url = reverse_lazy("app:index")
+    success_url = reverse_lazy("app:task-list")
 
 
 def change_task_status(request, pk):
@@ -40,7 +39,7 @@ def change_task_status(request, pk):
     task.completed = not task.completed
     task.save()
 
-    return HttpResponseRedirect(reverse("app:index"))
+    return HttpResponseRedirect(reverse("app:task-list"))
 
 
 class TagCreateView(generic.CreateView):
